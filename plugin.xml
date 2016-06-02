@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.itr.dlaxist"
+        version="0.1.0">
+
+  <name>Motorola DL-Axist Plugin</name>
+
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
+
+  <js-module src="www/dl-axist.js" name="dl-axist">
+    <clobbers target="dl-axist" />
+  </js-module>
+
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="DlAxistScanner">
+        <param name="android-package" value="com.itr.dlaxist.ScanService"/>
+      </feature>
+    </config-file>
+	<config-file target="AndroidManifest.xml" parent="/*/application">
+	   <uses-library android:name="com.datalogic.device" android:required="true"/>
+	</config-file>
+	
+    <source-file src="src/android/com/itr/dlaxist/BarcodeScan.java" target-dir="src/com/itr/dlaxist/"/>
+	<source-file src="src/android/com/itr/dlaxist/ScanCallback.java" target-dir="src/com/itr/dlaxist/"/>
+	<source-file src="src/android/com/itr/dlaxist/ScanService.java" target-dir="src/com/itr/dlaxist/"/>
+  </platform>
+
+</plugin>
