@@ -53,10 +53,6 @@ public class ScanService extends CordovaPlugin {
             };
         }
         else if ("start".equals(action)){
-            EMDKResults results = EMDKManager.getEMDKManager(this.cordova.getActivity().getApplicationContext(), this);
-            if (results.statusCode != EMDKResults.STATUS_CODE.SUCCESS) {
-                return false;
-            }
             // If the decoder instance is null, create it.
             if (decoder == null) { // Remember an onPause call will set it to null.
                 decoder = new BarcodeManager();
