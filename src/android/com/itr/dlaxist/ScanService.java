@@ -88,8 +88,6 @@ public class ScanService extends CordovaPlugin {
         @Override
         protected BarcodeScan doInBackground(DecodeResult... params) {
 
-            // Status string that contains both barcode data and type of barcode
-            // that is being scanned
             BarcodeScan barcode = null;
 
             try {
@@ -104,9 +102,9 @@ public class ScanService extends CordovaPlugin {
                         str = str1;
                     }
                 }
-                barcode = new BarcodeScan(new BarcodeScan("UPC", str));
+                barcode = new BarcodeScan("UPC", str);
 
-            } catch (ScannerException e) {
+            } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
