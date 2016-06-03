@@ -3,7 +3,7 @@
         id="com.itr.dlaxist"
         version="0.1.0">
 
-  <name>Motorola DL-Axist Plugin</name>
+  <name>Datalogic DL-Axist Plugin</name>
 
   <engines>
     <engine name="cordova" version=">=3.4.0"/>
