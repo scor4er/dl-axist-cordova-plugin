@@ -9,8 +9,8 @@
     <engine name="cordova" version=">=3.4.0"/>
   </engines>
 
-  <js-module src="www/dl-axist.js" name="dl-axist">
-    <clobbers target="dl-axist" />
+  <js-module src="www/dlaxist.js" name="dlaxist">
+    <clobbers target="dlaxist" />
   </js-module>
 
   <platform name="android">
