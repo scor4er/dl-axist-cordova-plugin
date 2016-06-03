@@ -20,14 +20,10 @@ public class ScanService extends CordovaPlugin {
 
     protected ScanCallback<BarcodeScan> scanCallback;
 
-    private final String LOGTAG = getClass().getName();
+    private final String LOGTAG = "DatalogicBarcodeScannerPlugin";
 
     BarcodeManager decoder = null;
     ReadListener listener = null;
-
-    // Boolean to explain whether the scanning is in progress or not at any
-    // specific point of time
-    boolean isScanning = false;
 
     @Override
     public boolean execute(String action, JSONArray data, final CallbackContext callbackContext) throws JSONException {
@@ -66,9 +62,7 @@ public class ScanService extends CordovaPlugin {
                     // Implement the callback method.
                     @Override
                     public void onRead(DecodeResult decodeResult) {
-                        if (scanCallback != null){
-                            scanCallback.execute(new BarcodeScan("UPC", decodeResult.getText()));
-                        }
+                        new AsyncDataUpdate().execute(decodeResult);
                     }
 
                 };
@@ -88,4 +82,55 @@ public class ScanService extends CordovaPlugin {
 
         return true;
     }
+
+    private class AsyncDataUpdate extends AsyncTask<DecodeResult, Void, BarcodeScan> {
+
+        @Override
+        protected BarcodeScan doInBackground(DecodeResult... params) {
+
+            // Status string that contains both barcode data and type of barcode
+            // that is being scanned
+            BarcodeScan barcode = null;
+
+            try {
+
+                DecodeResult decodeResult = params[0];
+
+                String str = "";
+
+                if (decodeResult != null){
+                    String str1 = decodeResult.getText();
+                    if (str1 != null){
+                        str = str1;
+                    }
+                }
+                barcode = new BarcodeScan(new BarcodeScan("UPC", str));
+
+            } catch (ScannerException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            // Return result to populate on UI thread
+            return barcode;
+        }
+
+        @Override
+        protected void onPostExecute(BarcodeScan barcode) {
+            if (barcode != null && scanCallback != null){
+                scanCallback.execute(barcode);
+            }
+        }
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
+
+
+    }
+
 }
