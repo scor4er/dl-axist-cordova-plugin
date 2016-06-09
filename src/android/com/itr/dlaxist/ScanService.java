@@ -20,7 +20,7 @@ public class ScanService extends CordovaPlugin {
 
     protected ScanCallback<BarcodeScan> scanCallback;
 
-    private final String LOGTAG = "DatalogicBarcodeScannerPlugin";
+    private final String LOGTAG = "BarcodeScanBarcodeScanBarcodeScan";
 
     BarcodeManager decoder = null;
     ReadListener listener = null;
@@ -62,7 +62,7 @@ public class ScanService extends CordovaPlugin {
                     // Implement the callback method.
                     @Override
                     public void onRead(DecodeResult decodeResult) {
-                        new AsyncDataUpdate().execute(decodeResult);
+                        new AsyncDataUpdate().execute(decodeResult.getText());
                     }
 
                 };
@@ -76,31 +76,26 @@ public class ScanService extends CordovaPlugin {
         }
         else if ("trigger".equals(action)){
             if (scanCallback != null){
-                scanCallback.execute(new BarcodeScan("UPCA", "000000000010"));
+                new AsyncDataUpdate().execute(args.getString(0));
             }
         }
 
         return true;
     }
 
-    private class AsyncDataUpdate extends AsyncTask<DecodeResult, Void, BarcodeScan> {
+    private class AsyncDataUpdate extends AsyncTask<String, Void, BarcodeScan> {
 
         @Override
-        protected BarcodeScan doInBackground(DecodeResult... params) {
+        protected BarcodeScan doInBackground(String... params) {
 
             BarcodeScan barcode = null;
 
             try {
 
-                DecodeResult decodeResult = params[0];
+                String str = params[0];
 
-                String str = "";
-
-                if (decodeResult != null){
-                    String str1 = decodeResult.getText();
-                    if (str1 != null){
-                        str = str1;
-                    }
+                if (str == null){
+                    str = "";
                 }
                 barcode = new BarcodeScan("UPC", str);
 
