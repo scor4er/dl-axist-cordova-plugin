@@ -20,7 +20,7 @@ public class ScanService extends CordovaPlugin {
 
     protected ScanCallback<BarcodeScan> scanCallback;
 
-    private final String LOGTAG = "BarcodeScanBarcodeScanBarcodeScan";
+    private final String LOGTAG = "BarcodeScan";
 
     BarcodeManager decoder = null;
     ReadListener listener = null;
