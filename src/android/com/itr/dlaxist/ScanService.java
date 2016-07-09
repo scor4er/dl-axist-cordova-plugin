@@ -76,7 +76,7 @@ public class ScanService extends CordovaPlugin {
         }
         else if ("trigger".equals(action)){
             if (scanCallback != null){
-                new AsyncDataUpdate().execute(args.getString(0));
+                new AsyncDataUpdate().execute(data.getString(0));
             }
         }
 
