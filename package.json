@@ -1,9 +1,9 @@
 {
-  "name": "phonegap-plugin-dlaxist",
+  "name": "cordova-plugin-dlaxist",
   "version": "0.1.0",
   "description": "You can use the BarcodeScanner plugin to scan different types of barcodes and get the metadata encoded in them for processing within your application.",
   "cordova": {
-    "id": "phonegap-plugin-dlaxist",
+    "id": "cordova-plugin-dlaxist",
     "platforms": [
       "ios",
       "android",
