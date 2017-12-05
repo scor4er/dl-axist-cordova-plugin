@@ -53,6 +53,9 @@ public class ScanService extends CordovaPlugin {
             if (decoder == null) { // Remember an onPause call will set it to null.
                 decoder = new BarcodeManager();
             }
+			else{
+				return;
+			}
 
             try {
 
@@ -74,6 +77,18 @@ public class ScanService extends CordovaPlugin {
             }
 
         }
+		else if ("stop".equals(action)){
+			try {
+				if (decoder != null){
+					decoder.release();
+					scanCallback = null;
+					decoder = null;
+					listener = null;
+				}
+            } catch (DecodeException e) {
+                Log.e(LOGTAG, "Error while releasing a BarcodeManager", e);
+            }
+		}
         else if ("trigger".equals(action)){
             if (scanCallback != null){
                 new AsyncDataUpdate().execute(data.getString(0));
