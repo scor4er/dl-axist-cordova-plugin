@@ -4,9 +4,9 @@
         start: function () {
             cordova.exec(null, null, 'DlAxistScanner', 'start', []);
         },
-		stop: function () {
-			cordova.exec(null, null, 'DlAxistScanner', 'stop', []);
-		},
+	stop: function () {
+		cordova.exec(null, null, 'DlAxistScanner', 'stop', []);
+	},
         registerForBarcode: function (callback) {
             cordova.exec(callback, null, 'DlAxistScanner', 'register', []);
         },
