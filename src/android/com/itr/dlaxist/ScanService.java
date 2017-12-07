@@ -54,7 +54,7 @@ public class ScanService extends CordovaPlugin {
                 decoder = new BarcodeManager();
             }
 			else{
-				return;
+				return true;
 			}
 
             try {
