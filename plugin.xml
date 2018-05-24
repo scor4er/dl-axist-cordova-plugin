@@ -27,7 +27,7 @@
     <source-file src="src/android/com/itr/dlaxist/BarcodeScan.java" target-dir="src/com/itr/dlaxist/"/>
 	<source-file src="src/android/com/itr/dlaxist/ScanCallback.java" target-dir="src/com/itr/dlaxist/"/>
 	<source-file src="src/android/com/itr/dlaxist/ScanService.java" target-dir="src/com/itr/dlaxist/"/>
-	<source-file src="lib/datalogic.jar" target-dir="lib" />
+	<source-file src="lib/datalogic.jar" target-dir="libs" />
   </platform>
 
 </plugin>
