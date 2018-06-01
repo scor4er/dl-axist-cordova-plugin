@@ -21,7 +21,7 @@
       </feature>
     </config-file>
 	<config-file target="AndroidManifest.xml" parent="/*/application">
-	   <uses-library android:name="com.datalogic.device"/>
+	   <uses-library android:name="com.datalogic.device" android:required="false"/>
 	</config-file>
 	
     <source-file src="src/android/com/itr/dlaxist/BarcodeScan.java" target-dir="src/com/itr/dlaxist/"/>
